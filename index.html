@@ -33,47 +33,59 @@
             <div class="row typography-row main" ng-hide="validated">
 
                 <div class="type pizza-type">
-                    <span class="text-note">Recette</span>
+                    <span class="text-note">Recette <p>{{ form.typeName }}</p></span>
+
                     <div ng-repeat="type in types">
                         <label ng-mouseenter="type.description.show=true" ng-mouseleave="type.description.show=false">
-                            <input type="radio" name="type" />
-                            {{type.name}}
-                            <span class="description" ng-show="type.description.show">{{type.description.body}}</span>
+                            <input type="radio" ng-model="form.typeName" ng-value="type.name"/>
+                            {{ type.name }}
+                            <span class="description" ng-show="type.description.show">{{ type.description.body }}</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="type nb-parts">
-                    <span class="text-note">Nombre de parts</span>
-                    <input type="text" />
-                    <span class="pizza-1 pizza-pict"></span>
+                    <span class="text-note">Nombre de parts <p>{{form.parts}}</p></span>
+                    <input type="text" ng-model="form.parts"/>
+                    <span ng-show="form.parts==1" class="pizza-1 pizza-pict"></span>
+                    <span ng-show="form.parts==2" class="pizza-2 pizza-pict"></span>
+                    <span ng-show="form.parts==3" class="pizza-3 pizza-pict"></span>
+                    <span ng-show="form.parts==4" class="pizza-4 pizza-pict"></span>
+                    <span ng-show="form.parts==5" class="pizza-5 pizza-pict"></span>
+                    <span ng-show="form.parts==6" class="pizza-6 pizza-pict"></span>
                 </div>
 
                 <div class="type">
                     <span class="text-note">Pâte</span>
-                    <label ng-repeat="pate in pates"><input type="radio" name="pate" />{{pate.name}}</label>
+                    <label ng-repeat="pate in pates">
+                        <input type="radio" ng-model="form.pateName" ng-value="pate.name"/>
+                        {{pate.name}}
+                    </label>
                 </div>
 
                 <div class="type">
                     <span class="text-note">Extras</span>
-                    <label ng-repeat="extra in extras"><input name="extra" type="checkbox" />{{extra.name}}</label>
+                    <label ng-repeat="extra in extras">
+                        <input name="extra" type="checkbox" ng-model="form.extraName" />
+                        {{extra.name}}
+                    </label>
                 </div>
 
                 <div class="infos-client" ng-show="showForm">
                     <div class="type">
-                        <span class="text-note">Prénom</span>
-                        <input type="text" name="firstname" />
+                        <span class="text-note">Prénom <p>{{form.firstName}}</p></span>
+                        <input type="text" name="firstname" ng-model="form.firstName"/>
                     </div>
                     <div class="type">
-                        <span class="text-note">Adresse</span>
+                        <span class="text-note">Adresse <p>{{form.adress}}</p></span>
                         <div>
-                            <input type="text" name="adress" />
+                            <input type="text" name="adress" ng-model="form.adress"/>
                         </div>
                         <button class="btn btn-default add">Ajouter une autre ligne d'adresse</button>
                     </div>
                     <div class="type">
-                        <span class="text-note">Code Postal</span>
-                        <input type="number" name="number" />
+                        <span class="text-note">Code Postal <p>{{form.number}}</p></span>
+                        <input type="number" name="number" ng-model="form.number"/>
                     </div>
                     <br />
                 </div>
@@ -82,7 +94,7 @@
                 <button class="btn btn-success done"      ng-show="showForm" ng-click="validated=!validated">Allez hop, j'ai très faim !</button>
             </div>
             <div ng-show="validated">
-                <h3>Merci {{firstname}} !<br/>C'est livré dans 15 minutes.</h3>
+                <h3>Merci {{form.firstName}} !<br/>C'est livré dans 15 minutes.</h3>
             </div>
         </div>
         <!-- /.container -->

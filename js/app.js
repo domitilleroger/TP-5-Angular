@@ -6,6 +6,11 @@ var app = angular.module('app', []);
 		$showForm 	= false;
 		$validated 	= false;
 
+
+		$scope.form = {
+			typeName: '',
+			parts: '',
+			pateName: ''};
 		$scope.types 	= types;
 		$scope.pates 	= pates;
 		$scope.extras 	= extras;

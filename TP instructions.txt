@@ -21,7 +21,7 @@ TP Angular
 
 	7 - Afficher le formulaire de saisie d'adresse au clic sur le bouton "Etape suivante" puis masquer ce même bouton en utilisant les directives "ng-show" et "ng-hide"
 
-8 - Au clic sur le bouton de validation, masquer tous les éléments de la page, et afficher le message de remerciement en prenant soin d'y inclure le prénom du client.
+	8 - Au clic sur le bouton de validation, masquer tous les éléments de la page, et afficher le message de remerciement en prenant soin d'y inclure le prénom du client
 
 9 - Actualiser le total de la commande en fonction des éléments choisis en utilisant l'objet contenant les choix de l'utilisateur.
 	Exemple :
