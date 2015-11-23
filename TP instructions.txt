@@ -1,0 +1,79 @@
+TP Angular
+============
+
+	>> Vous devez modifier le HTML pour ajouter les directives appropriées.
+
+	1 - Installer le framework AngularJS
+
+	2 - Créer un fichier de travail app.js
+
+3 - Créer un module et un controller dans le fichier fraîchement crée
+
+	4 - Initialiser les variables dans le scope :
+		- Un tableau d'objet de type de pizza (cf variables.js)
+		- Un tableau d'objet de type de pate (cf variables.js)
+		- Un tableau d'objet de type d'extra (cf variables.js)
+		- Un object contenant les choix de l'utilisateur : nombre de parts, type de pizza, type de pate, extras
+
+	5 - Utiliser les variables disponibles dans le scope pour afficher les éléments de formulaire via la directive "ng-repeat"
+
+	6 - Afficher les ingrédients des pizzas au survol de leurs nom en utilisant les directives "ng-show", "ng-mouseenter", "ng-mouseleave"
+
+	7 - Afficher le formulaire de saisie d'adresse au clic sur le bouton "Etape suivante" puis masquer ce même bouton en utilisant les directives "ng-show" et "ng-hide"
+
+8 - Au clic sur le bouton de validation, masquer tous les éléments de la page, et afficher le message de remerciement en prenant soin d'y inclure le prénom du client.
+
+9 - Actualiser le total de la commande en fonction des éléments choisis en utilisant l'objet contenant les choix de l'utilisateur.
+	Exemple :
+		Prix de 2 parts de pizza = 2/6 * (prix initial + option pate + extras)
+
+10 - Utiliser le filtre "number" pour afficher le prix avec une précision de 2 chiffres après la virgule
+
+Bonus
+=======================
+	- Afficher visuellement le nombre de parts et le nombre de pizzas appropriées en dessous du champs "Nombre de parts". 
+		- Construire une fonction qui revoie un tableau représentant le nombre de parts à afficher sur chaque pizza.
+			Exemple pour 13 parts : sliceArray(13) renvois [6, 6, 1]
+			Exemple de code : "ng-repeat="slice in sliceArray(13) track by $index"
+			
+			Les classes CSS pizza-1 ... pizza-6 sont disponibles pour afficher les parts.
+			Exemple : <span class="pizza-5 pizza-pict"></span> affiche une pizza avec 5 parts
+
+	- Ajouter une ligne de champ d'adresse lorsque l'on clique sur le bouton "Ajouter une autre ligne d'adresse".
+		La création d'une variable stockant le nombre de lignes à afficher sera nécessaire.
+		Utiliser la directive "ng-click" et "ng-repeat"
+
+AIDE // Code Snippets
+======================
+
+	- Afficher conditionnellement une DIV :
+		<div ng-show="step === 2">...</div>
+
+	- Masquer conditionnellement une DIV :
+		<div ng-hide="step === 1">...</div>
+
+	- Afficher X fois un éléments :
+		<div ng-repeat="user in users">
+			{{ user.name }}
+		</div>
+
+	- Répéter 5 fois un élément :
+		<div ng-repeat="item in x track by $index">
+			...
+		</div>
+
+		Avec 
+			$scope.x = new Array(5);
+
+	- Gestion des checkbox pour les Extras (olives, anchois, etc.) :
+		<label ng-repeat="extra in extras track by $index">
+			<input type="checkbox" ng-model="choice.extra[$index]">{{ extra.name + ' (+' + extra.price +'€)' }}
+		</label>
+
+	- Calcul du prix des extras :
+		// Pour chaque extra disponible
+		angular.forEach(extras, function(extra, key) {
+			// Ajoute le prix de l'extra, s'il est selectionné
+			if($scope.choice.extra[key]) total += extra.price;
+		});
+
