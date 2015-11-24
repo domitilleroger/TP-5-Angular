@@ -67,11 +67,9 @@ var extras = [
     }
 ];
 
-var choices = [
-    {
-        parts: 0,
-        typeName: 'Margherita',
-        pate: 'Classique',
-        extra: 'Olives'
-    }
-];
+var choices ={
+    parts: 0,
+    typeName: 'Margherita',
+    pateName: 'Classique',
+    extraName: 'Olives'
+};
