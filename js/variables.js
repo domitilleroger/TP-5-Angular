@@ -69,7 +69,7 @@ var extras = [
 
 var choices ={
     parts: 0,
-    typeName: 'Margherita',
-    pateName: 'Classique',
-    extraName: 'Olives'
+    typeName: null,
+    pateName: null,
+    extraName: { 'Olives': false, 'Anchois': false, 'Chèvre': false, 'Piment': false}
 };

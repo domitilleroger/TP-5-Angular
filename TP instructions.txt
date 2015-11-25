@@ -23,11 +23,11 @@ TP Angular
 
 	8 - Au clic sur le bouton de validation, masquer tous les éléments de la page, et afficher le message de remerciement en prenant soin d'y inclure le prénom du client
 
-9 - Actualiser le total de la commande en fonction des éléments choisis en utilisant l'objet contenant les choix de l'utilisateur.
-	Exemple :
-		Prix de 2 parts de pizza = 2/6 * (prix initial + option pate + extras)
+	9 - Actualiser le total de la commande en fonction des éléments choisis en utilisant l'objet contenant les choix de l'utilisateur.
+		Exemple :
+			Prix de 2 parts de pizza = 2/6 * (prix initial + option pate + extras)
 
-10 - Utiliser le filtre "number" pour afficher le prix avec une précision de 2 chiffres après la virgule
+	10 - Utiliser le filtre "number" pour afficher le prix avec une précision de 2 chiffres après la virgule
 
 Bonus
 =======================

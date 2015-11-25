@@ -37,7 +37,7 @@
 
                     <div ng-repeat="type in types">
                         <label ng-mouseenter="type.description.show=true" ng-mouseleave="type.description.show=false">
-                            <input type="radio" ng-model="choices.typeName" ng-value="type.name"/>
+                            <input type="radio" ng-change="calculateTotalPrice()" ng-model="choices.typeName" ng-value="type.name"/>
                             {{ type.name }}
                             <span class="description" ng-show="type.description.show">{{ type.description.body }}</span>
                         </label>
@@ -47,18 +47,13 @@
                 <div class="type nb-parts">
                     <span class="text-note">Nombre de parts</span>
                     <input type="text" ng-change="calculateTotalPrice()" ng-model="choices.parts"/>
-                    <span ng-show="choices.parts==1" class="pizza-1 pizza-pict"></span>
-                    <span ng-show="choices.parts==2" class="pizza-2 pizza-pict"></span>
-                    <span ng-show="choices.parts==3" class="pizza-3 pizza-pict"></span>
-                    <span ng-show="choices.parts==4" class="pizza-4 pizza-pict"></span>
-                    <span ng-show="choices.parts==5" class="pizza-5 pizza-pict"></span>
-                    <span ng-show="choices.parts==6" class="pizza-6 pizza-pict"></span>
+                    <span ng-show="choices.parts>0" ng-repeat="slice in sliceArray(choices.parts) track by $index" class="pizza-pict" ng-class="pizza-{{slice}}"> </span>
                 </div>
 
                 <div class="type">
                     <span class="text-note">Pâte</span>
                     <label ng-repeat="pate in pates">
-                        <input type="radio" ng-model="choices.pateName" ng-value="pate.name"/>
+                        <input type="radio" ng-change="calculateTotalPrice()" ng-model="choices.pateName" ng-value="pate.name"/>
                         {{ pate.name }}
                     </label>
                 </div>
@@ -66,7 +61,7 @@
                 <div class="type">
                     <span class="text-note">extras </span>
                     <label ng-repeat="extra in extras track by $index">
-                        <input type="checkbox" ng-model="choices.extraName[extra.name]" ng-true-value="true" ng-false-value="false"/>
+                        <input type="checkbox" ng-change="calculateTotalPrice()" ng-model="choices.extraName[extra.name]" ng-true-value="true" ng-false-value="false"/>
                         {{extra.name }}
                     </label>
                 </div>
@@ -80,8 +75,9 @@
                         <span class="text-note">Adresse <p>{{form.adress}}</p></span>
                         <div>
                             <input type="text" name="adress" ng-model="form.adress"/>
+                            <input ng-repeat="line in $scope.adressLines" type="text" name="adress" ng-model="form.adress"/>
                         </div>
-                        <button class="btn btn-default add">Ajouter une autre ligne d'adresse</button>
+                        <button class="btn btn-default add" ng-click="$scope.adressLines=$scope.adressLines+1">Ajouter une autre ligne d'adresse {{$scope.adressLines}}</button>
                     </div>
                     <div class="type">
                         <span class="text-note">Code Postal <p>{{form.number}}</p></span>
@@ -103,7 +99,7 @@
           <div class="tile">
             <img src="images/icons/svg/paper-bag.svg" class="tile-image big-illustration">
             <h3 class="tile-title">Total</h3>
-            <p>{{ totalPrice }} €</p>
+            <p>{{ totalPrice  | number:2}} €</p>
 
             <p>{{choices.parts}} part de {{ choices.typeName }} avec un pâte {{choices.pateName}} et {{choices.extraName}}</p>
             <a class="btn btn-primary btn-large btn-block" href="">Payer</a>
