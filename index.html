@@ -20,8 +20,6 @@
   <body ng-app="app">
     <div ng-controller="appController">        
         <h1>TYPES</h1>
-        <p ng-repeat="type in types">{{type}}</p>
-
         <div class="container">
             <div class="headline">
                 <h1 class="logo">
@@ -38,49 +36,49 @@
                     <div ng-repeat="type in types">
                         <label ng-mouseenter="type.description.show=true" ng-mouseleave="type.description.show=false">
                             <input type="radio" ng-change="calculateTotalPrice()" ng-model="choices.typeName" ng-value="type.name"/>
-                            {{ type.name }}
+                            {{ type.name + ' ( ' + type.price + ' € )' }}
                             <span class="description" ng-show="type.description.show">{{ type.description.body }}</span>
                         </label>
                     </div>
                 </div>
 
+                <!-- Le css ne semble pas prendre en compte la classe bien écrite dans le "ng-class" -->
                 <div class="type nb-parts">
                     <span class="text-note">Nombre de parts</span>
                     <input type="text" ng-change="calculateTotalPrice()" ng-model="choices.parts"/>
-                    <span ng-show="choices.parts>0" ng-repeat="slice in sliceArray(choices.parts) track by $index" class="pizza-pict" ng-class="pizza-{{slice}}"> </span>
+                    <span ng-show="choices.parts>0" ng-repeat="slice in sliceArray(choices.parts)" class="pizza-pict" ng-class="pizza-{{slice}}" > </span>
                 </div>
 
                 <div class="type">
                     <span class="text-note">Pâte</span>
                     <label ng-repeat="pate in pates">
                         <input type="radio" ng-change="calculateTotalPrice()" ng-model="choices.pateName" ng-value="pate.name"/>
-                        {{ pate.name }}
+                        {{ pate.name + ' ( + ' + pate.price + ' € )' }}
                     </label>
                 </div>
 
                 <div class="type">
-                    <span class="text-note">extras </span>
+                    <span class="text-note">Extras </span>
                     <label ng-repeat="extra in extras track by $index">
                         <input type="checkbox" ng-change="calculateTotalPrice()" ng-model="choices.extraName[extra.name]" ng-true-value="true" ng-false-value="false"/>
-                        {{extra.name }}
+                        {{ extra.name + ' ( + ' + extra.price +' € )' }}
                     </label>
                 </div>
 
                 <div class="infos-client" ng-show="showForm">
                     <div class="type">
-                        <span class="text-note">Prénom <p>{{form.firstName}}</p></span>
+                        <span class="text-note">Prénom </span>
                         <input type="text" name="firstname" ng-model="form.firstName"/>
                     </div>
                     <div class="type">
-                        <span class="text-note">Adresse <p>{{form.adress}}</p></span>
-                        <div>
-                            <input type="text" name="adress" ng-model="form.adress"/>
-                            <input ng-repeat="line in $scope.adressLines" type="text" name="adress" ng-model="form.adress"/>
+                        <span class="text-note">Adresse </span>
+                        <div ng-repeat="line in range(adressLines) track by $index">
+                            <input type="text" ng-model="form.adress" />
                         </div>
-                        <button class="btn btn-default add" ng-click="$scope.adressLines=$scope.adressLines+1">Ajouter une autre ligne d'adresse {{$scope.adressLines}}</button>
+                        <button class="btn btn-default add" ng-click="adressLines=adressLines+1">Ajouter une autre ligne d'adresse</button>
                     </div>
                     <div class="type">
-                        <span class="text-note">Code Postal <p>{{form.number}}</p></span>
+                        <span class="text-note">Code Postal </span>
                         <input type="number" name="number" ng-model="form.number"/>
                     </div>
                     <br />

@@ -67,7 +67,7 @@ AIDE // Code Snippets
 
 	- Gestion des checkbox pour les Extras (olives, anchois, etc.) :
 		<label ng-repeat="extra in extras track by $index">
-			<input type="checkbox" ng-model="choice.extra[$index]">{{ extra.name + ' (+' + extra.price +'€)' }}
+			<input type="checkbox" ng-model="choice.extra[$index]">g
 		</label>
 
 	- Calcul du prix des extras :
